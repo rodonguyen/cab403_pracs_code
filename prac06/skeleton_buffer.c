@@ -9,8 +9,8 @@
 
 buffer_item buffer[BUFFER_SIZE];
 pthread_mutex_t mutex;
-sem_t empty;
-sem_t full;
+sem_t empty; // semaphore to keep track of empty slots in the buffer
+sem_t full; // semaphore to keep track of full slots in the buffer
 
 int insertPointer = 0, removePointer = 0;
 
