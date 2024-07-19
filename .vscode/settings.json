@@ -2,6 +2,7 @@
   "files.associations": {
     "stdio.h": "c",
     "limits.h": "c",
-    "float.h": "c"
+    "float.h": "c",
+    "unistd.h": "c"
   }
 }
