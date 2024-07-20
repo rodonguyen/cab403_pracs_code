@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <limits.h>
 #include <float.h>
 
@@ -10,10 +11,12 @@ void swapVariables(int *pnt1, int *pnt2);
 
 int main()
 {
+  // // ====================================================================================
   // Task 1
   // printf("Hello world! This is captain speaking.\n");
   // return 0;
 
+  // // ====================================================================================
   // Task 2
   // Type size discovery
   char *char_ptr;
@@ -56,6 +59,7 @@ int main()
   printf("\n The minimum possible value for an int is %d and max is %d", INT_MIN, INT_MAX);
   // Try to figure out the maths behind the min/max of int. Hint: look at the sizeof int.
 
+  // // ====================================================================================
   // Task 3
   // By the way, what does that <limits.h> really do?
 
@@ -76,6 +80,7 @@ int main()
   // } while (num != 0);
   // printf("FINAL TOTAL: %d\n\n", sum);
 
+  // // ====================================================================================
   // Task 5
   printf("Maximum integer positive value: %d\n", INT_MAX);
   printf("Maximum unsigned integer value: %u\n", UINT_MAX);
@@ -102,6 +107,7 @@ int main()
   // printf("The value printed is %c\n", 224);
   printf("\n\n");
 
+  // // ====================================================================================
   // Task 6
   // int a, b, result;
   // printf("Enter two integers separated by a space: ");
@@ -110,12 +116,14 @@ int main()
   // printf("\nThe sum of %d and %d is %d\n", a, b, result);
 
   // // solve challenge
-  // // const float PI = 3.14159;  i switch to using pre-processor definition so that the outside function can access it
+  // // const float PI = 3.14159;  i switch to using pre-processor definition so that the outside function (i.e. calculateCylinderVolume) can access it
   // float radius, height;
   // printf("Enter the radius and height of the cylinder separated by a space: ");
   // scanf("%f%f", &radius, &height);
   // printf("The volume of the cylinder: %.5f\n", calculateCylinderVolume(radius, height));
+  printf("\n\n");
 
+  // // ====================================================================================
   // Task 7
   int a = 45;
   int b = 22;
@@ -151,16 +159,17 @@ int main()
   // Q: What has been swapped? Have the memory addresses of the pointers been swapped
   // or the values held in the memory addresses been swapped.
 
-  void *ptr;
-  char g = 'A';
-  int h = 2;
-  float j = 3;
-  ptr = &g;
-  printf("\nThe value of g = %c\n", *((char *)ptr));
-  ptr = &h;
-  printf("\nThe value of h = %d\n", *((int *)ptr));
-  ptr = &j;
-  printf("\nThe value of j = %f\n", *((float *)ptr));
+  // void *ptr;
+  // char g = 'A';
+  // int h = 2;
+  // float j = 3;
+  // ptr = &g;
+  // printf("\nThe value of g = %c\n", *((char *)ptr));
+  // ptr = &h;
+  // printf("\nThe value of h = %d\n", *((int *)ptr));
+  // ptr = &j;
+  // printf("\nThe value of j = %f\n", *((float *)ptr));
+  printf("\n\n");
 
   return 0;
 }

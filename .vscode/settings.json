@@ -3,6 +3,7 @@
     "stdio.h": "c",
     "limits.h": "c",
     "float.h": "c",
-    "unistd.h": "c"
+    "unistd.h": "c",
+    "cstdlib": "c"
   }
 }
