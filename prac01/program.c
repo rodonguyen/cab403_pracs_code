@@ -82,30 +82,30 @@ int main()
 
   // // ====================================================================================
   // Task 5
-  printf("Maximum integer positive value: %d\n", INT_MAX);
-  printf("Maximum unsigned integer value: %u\n", UINT_MAX);
-  printf("Maximum short signed integer value: %hi\n", SHRT_MAX);
-  printf("Minimum short signed integer value: %hi\n", SHRT_MIN);
-  printf("Maximum signed long value: %li\n", LONG_MAX);
-  printf("Maximum unsigned long value: %lu\n", ULONG_MAX);
+  // printf("Maximum integer positive value: %d\n", INT_MAX);
+  // printf("Maximum unsigned integer value: %u\n", UINT_MAX);
+  // printf("Maximum short signed integer value: %hi\n", SHRT_MAX);
+  // printf("Minimum short signed integer value: %hi\n", SHRT_MIN);
+  // printf("Maximum signed long value: %li\n", LONG_MAX);
+  // printf("Maximum unsigned long value: %lu\n", ULONG_MAX);
 
-  printf("Storage size for float : %zu \n", sizeof(float));
-  printf("Minimum float positive value: %E\n", FLT_MIN);
-  printf("Maximum float positive value: %E\n", FLT_MAX);
-  printf("Precision value: %d\n", FLT_DIG);
+  // printf("Storage size for float : %zu \n", sizeof(float));
+  // printf("Minimum float positive value: %E\n", FLT_MIN);
+  // printf("Maximum float positive value: %E\n", FLT_MAX);
+  // printf("Precision value: %d\n", FLT_DIG);
 
-  printf("Max value for char : %d \n", CHAR_MAX);
-  printf("Min value for char : %d \n", CHAR_MIN);
+  // printf("Max value for char : %d \n", CHAR_MAX);
+  // printf("Min value for char : %d \n", CHAR_MIN);
 
-  // https://www.asciitable.com/
-  char myChar = 'r';
-  int num = 72; /* 65 is the ASCII encoding for 'A' */
-  printf("The value printed is %c\n", num);
-  printf("The value printed is %d\n", num + 3);
-  printf("The value printed is %c\n", num + 3);
-  printf("The value printed is %c\n", myChar + 3);
-  // printf("The value printed is %c\n", 224);
-  printf("\n\n");
+  // // https://www.asciitable.com/
+  // char myChar = 'r';
+  // int num = 72; /* 65 is the ASCII encoding for 'A' */
+  // printf("The value printed is %c\n", num);
+  // printf("The value printed is %d\n", num + 3);
+  // printf("The value printed is %c\n", num + 3);
+  // printf("The value printed is %c\n", myChar + 3);
+  // // printf("The value printed is %c\n", 224);
+  // printf("\n\n");
 
   // // ====================================================================================
   // Task 6
