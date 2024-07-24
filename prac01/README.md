@@ -1,7 +1,7 @@
 - Quickly comment/uncomment code by selecting the block of code and `Ctrl + /`
 - Easily compile and run program.c by:
-  ```
-  chmod +x compile.sh
+  ```bash
+  chmod +x compile.sh # just need to do once to give the file access to execute
   ./compile.sh
   ```
 - Example of memory leak: [Video](https://youtu.be/lQCLAKfcYI4)
