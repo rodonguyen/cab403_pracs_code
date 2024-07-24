@@ -1,20 +1,23 @@
 #include <stdio.h>
-#include <stdlib.h>
+// #include <stdlib.h>
 #include <limits.h>
-#include <float.h>
+// #include <float.h>
 
 #define PI 3.14159
 
-int sumNumbers(int x, int y);
-float calculateCylinderVolume(float radius, float height);
-void swapVariables(int *pnt1, int *pnt2);
+int sumNumbers(int x, int y)
+{
+  return x + y;
+}
+// float calculateCylinderVolume(float radius, float height);
+// void swapVariables(int *pnt1, int *pnt2);
 
 int main()
 {
   // // ====================================================================================
   // Task 1
   // printf("Hello world! This is captain speaking.\n");
-  // return 0;
+  // return;
 
   // // ====================================================================================
   // Task 2
@@ -23,17 +26,17 @@ int main()
   int *int_ptr;
   long *long_ptr;
   short *short_ptr;
-  float *float_ptr;
-  double *double_ptr;
-  char *far_char_ptr;
+  float *float_ptr;   // 0.21312
+  double *double_ptr; // 0.21312
 
   struct my_struct_name
   {
     char letter;
     int favorite_number;
+    int not_my_favorite_number;
   } test_struct;
 
-  printf("\n Type             Size ");
+  printf("\n Type             Size (byte) ");
   printf("\n==========================");
   printf("\n character         %zu ", sizeof(char));
   printf("\n integer           %zu ", sizeof(int));
@@ -47,23 +50,32 @@ int main()
   printf("\n long pointer      %zu ", sizeof(long_ptr));
   printf("\n float pointer     %zu ", sizeof(float_ptr));
   printf("\n double pointer    %zu ", sizeof(double_ptr));
-  printf("\n far char pointer  %zu ", sizeof(far_char_ptr));
   printf("\n test_structure    %zu ", sizeof(test_struct));
   printf("\n==========================");
 
-  // a bit about struct
-  test_struct = (struct my_struct_name){'A', 10};
-  printf("\n test_structure.letter = %c", test_struct.letter);
-  printf("\n test_structure.favorite_number = %d", test_struct.favorite_number);
+  // print the addresses of char_ptr, int_ptr, long_ptr
+  // char my_char = 'A';
+  // int my_int = 10;
+  // long my_long = 1000000;
 
-  printf("\n The minimum possible value for an int is %d and max is %d", INT_MIN, INT_MAX);
+  // printf("\n\n my_char address: %p", &my_char);
+  // printf("\n my_int address: %p", &my_int);
+  // printf("\n my_long address: %p", &my_long);
+
+  // // a bit about struct
+  // test_struct = (struct my_struct_name){'A', 10};
+  // printf("\n test_structure.letter = %c", test_struct.letter);
+  // printf("\n test_structure.favorite_number = %d", test_struct.favorite_number);
+
+  // printf("\n The minimum possible value for an int is %d and max is %d", INT_MIN, INT_MAX);
   // Try to figure out the maths behind the min/max of int. Hint: look at the sizeof int.
+  // 4 bytes = 32 bits = 2^32 = 4294967296 (half positive, number 0 is in the positive gang, half negative)
 
   // // ====================================================================================
   // Task 3
   // By the way, what does that <limits.h> really do?
 
-  // /* Declares an integer variable to hold the number read in */
+  /* Declares an integer variable to hold the number read in */
   // int num;
   // /* Declares an integer variable to hold the sum */
   // int sum;
@@ -78,6 +90,7 @@ int main()
   //   /* Add num to sum */
   //   sum = sum + num;
   // } while (num != 0);
+
   // printf("FINAL TOTAL: %d\n\n", sum);
 
   // // ====================================================================================
@@ -98,14 +111,17 @@ int main()
   // printf("Min value for char : %d \n", CHAR_MIN);
 
   // // https://www.asciitable.com/
-  // char myChar = 'r';
-  // int num = 72; /* 65 is the ASCII encoding for 'A' */
-  // printf("The value printed is %c\n", num);
-  // printf("The value printed is %d\n", num + 3);
-  // printf("The value printed is %c\n", num + 3);
-  // printf("The value printed is %c\n", myChar + 3);
-  // // printf("The value printed is %c\n", 224);
-  // printf("\n\n");
+  printf("\n\n");
+
+  char myChar = 'r';
+  int num = 72; /* 65 is the ASCII encoding for 'A' */
+  printf("The value printed is %c\n", num);
+  printf("The value printed is %d\n", num + 3);
+  printf("The value printed is %c\n", num + 3);
+
+  printf("The value printed is %c\n", myChar + 5);
+  printf("The value printed is %c\n", 224); // this char is in extended ASCII table so maybe... we need to install something to help terminal to display it
+  printf("\n\n");
 
   // // ====================================================================================
   // Task 6
@@ -125,39 +141,45 @@ int main()
 
   // // ====================================================================================
   // Task 7
+
+  // //     variable name => storing              value
+  // //   * variable name => storing address of a value
+  // //  ** variable name => value stored in the address of a value 
+  // int a = 45;
+  // int b = 22;
+  // int *p1;
+  // int *p2;
+
+  // /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
+  // p1 = &a; // we are getting address of a in the memory and store it in p1 
+  // p2 = &b;
+  // /*
+  // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator *
+  // */
+
+  // //                         decimal                               pointer 
+  // printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
+  // printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
+  // printf("The value of a is %d and the memory address location is %p\n", a, &a);
+
+  // // Task 7 continue
   int a = 45;
   int b = 22;
   int *p1 = 0;
   int *p2 = 0;
+
   /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
   p1 = &a;
   p2 = &b;
-  /*
-  To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator *
-  */
-
+  // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator
   printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
   printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
-  printf("The value of a is %d and the memory address location is %p\n", a, &a);
-
-  // Task 7 continue
-  // int a = 45;
-  // int b = 22;
-  // int *p1 = 0;
-  // int *p2 = 0;
-
-  // /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
-  // p1 = &a;
-  // p2 = &b;
-  // // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator
-  // printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
-  // printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
-  // swapVariables(&a, &b);
-  // printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
-  // printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
+  swapVariables(&a, &b);
+  printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
+  printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
 
   // Q: What has been swapped? Have the memory addresses of the pointers been swapped
-  // or the values held in the memory addresses been swapped.
+  // or the values held in the memory addresses been swapped. => the latter
 
   // void *ptr;
   // char g = 'A';
@@ -169,9 +191,9 @@ int main()
   // printf("\nThe value of h = %d\n", *((int *)ptr));
   // ptr = &j;
   // printf("\nThe value of j = %f\n", *((float *)ptr));
-  printf("\n\n");
+  // printf("\n\n");
 
-  return 0;
+  // return 0;
 }
 
 void swapVariables(int *pnt1, int *pnt2)
@@ -180,11 +202,6 @@ void swapVariables(int *pnt1, int *pnt2)
   temp = *pnt1;
   *pnt1 = *pnt2;
   *pnt2 = temp;
-}
-
-int sumNumbers(int x, int y)
-{
-  return x + y;
 }
 
 /**
