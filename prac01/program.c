@@ -1,7 +1,7 @@
 #include <stdio.h>
 // #include <stdlib.h>
-#include <limits.h>   // this is called header file
-// #include <float.h>
+#include <limits.h> // this is called header file
+#include <float.h>
 
 #define PI 3.14159
 
@@ -9,8 +9,8 @@ int sumNumbers(int x, int y)
 {
   return x + y;
 }
-// float calculateCylinderVolume(float radius, float height);
-// void swapVariables(int *pnt1, int *pnt2);
+float calculateCylinderVolume(float *radius, float *height);
+void swapVariables(int *pnt1, int *pnt2);
 
 int main()
 {
@@ -78,31 +78,31 @@ int main()
   // 59b + 1 = 59c + 4 = 5a0 (hexadecimal)
   // CIIIILLLLLLLL
 
-
   // // ====================================================================================
   // Task 3
   // By the way, what does that <limits.h> really do?
 
-  /* Declares an integer variable to hold the number read in */
-  int num;
-  /* Declares an integer variable to hold the sum */
-  int sum;
-  /* Initialise the sum */
-  sum = 0;
-  do
-  {
-    printf("Sum so far: %d\n", sum);
-    printf("Enter number: ");
-    /* Read in an integer from the user */
-    scanf("%d", &num);
-    /* Add num to sum */
-    sum = sum + num;
-  } while (num != 0);
+  // /* Declares an integer variable to hold the number read in */
+  // int num;
+  // /* Declares an integer variable to hold the sum */
+  // int sum;
+  // /* Initialise the sum */
+  // sum = 0;
+  // do
+  // {
+  //   printf("Sum so far: %d\n", sum);
+  //   printf("Enter number: ");
+  //   /* Read in an integer from the user */
+  //   scanf("%d", &num);
+  //   /* Add num to sum */
+  //   sum = sum + num;
+  // } while (num != 0);
 
-  printf("FINAL TOTAL: %d\n\n", sum);
+  // printf("FINAL TOTAL: %d\n\n", sum);
 
   // // ====================================================================================
   // Task 5
+
   // printf("Maximum integer positive value: %d\n", INT_MAX);
   // printf("Maximum unsigned integer value: %u\n", UINT_MAX);
   // printf("Maximum short signed integer value: %hi\n", SHRT_MAX);
@@ -118,17 +118,22 @@ int main()
   // printf("Max value for char : %d \n", CHAR_MAX);
   // printf("Min value for char : %d \n", CHAR_MIN);
 
-  // // https://www.asciitable.com/
+  // short unsigned int myShort = -500;
+  // printf("The value of myShort is %d\n", myShort);
+  // printf("Max value for short unsigned integer: %d \n", USHRT_MAX);
+
+  // https://www.asciitable.com/
   // printf("\n\n");
 
   // char myChar = 'r';
   // int num = 72; /* 65 is the ASCII encoding for 'A' */
-  // printf("The value printed is %c\n", num);
+  // // printf("The value printed is %d\n", myChar);
+  // // printf("The value printed is %c\n", num);
   // printf("The value printed is %d\n", num + 3);
   // printf("The value printed is %c\n", num + 3);
 
-  // printf("The value printed is %c\n", myChar + 5);
-  // printf("The value printed is %c\n", 224); // this char is in extended ASCII table so maybe... we need to install something to help terminal to display it
+  // // printf("The value printed is %c\n", myChar + 5);
+  // // printf("The value printed is %c\n", 178); // this char is in extended ASCII table so maybe... we need to install something to help terminal to display it
   // printf("\n\n");
 
   // // ====================================================================================
@@ -145,13 +150,13 @@ int main()
   // printf("Enter the radius and height of the cylinder separated by a space: ");
   // scanf("%f%f", &radius, &height);
   // printf("The volume of the cylinder: %.5f\n", calculateCylinderVolume(radius, height));
-  printf("\n\n");
+  // printf("\n\n");
 
   // // ====================================================================================
   // Task 7
 
   // //     variable name => storing              value
-  // //   * variable name => storing address of a value
+  // //   * variable name => storing address of a value... aka a pointer
   // //  ** variable name => value stored in the address of a value
   // int a = 45;
   // int b = 22;
@@ -161,6 +166,7 @@ int main()
   // /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
   // p1 = &a; // we are getting address of a in the memory and store it in p1
   // p2 = &b;
+
   // /*
   // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator *
   // */
@@ -170,24 +176,30 @@ int main()
   // printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
   // printf("The value of a is %d and the memory address location is %p\n", a, &a);
 
-  // // Task 7 continue
-  //   int a = 45;
-  //   int b = 22;
-  //   int *p1 = 0;
-  //   int *p2 = 0;
+  // float radius = 5.5;
+  // float height= 6.6;
+  // calculateCylinderVolume(&radius, &height);
+  // printf("The volume of the cylinder: %.5f\n", calculateCylinderVolume(&radius, &height));
 
-  //   /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
-  //   p1 = &a;
-  //   p2 = &b;
-  //   // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator
-  //   printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
-  //   printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
-  //   swapVariables(&a, &b);
-  //   printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
-  //   printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
+
+  // // Task 7 continue
+    int a = 45;
+    int b = 22;
+    int *p1;
+    int *p2;
+
+    /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
+    p1 = &a;
+    p2 = &b;
+    // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator
+    printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
+    printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
+    swapVariables(&a, &b);
+    printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
+    printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
 
   // Q: What has been swapped? Have the memory addresses of the pointers been swapped
-  // or the values held in the memory addresses been swapped. => the latter
+  // or the values held in the memory addresses been swapped. Explain why.
 
   // void *ptr;
   // char g = 'A';
@@ -208,6 +220,7 @@ void swapVariables(int *pnt1, int *pnt2)
 {
   int temp = 0;
   temp = *pnt1;
+  printf("The value of temp is %d, of *pnt1 is %d while if we are doing anything to the address, then the value should look like %p. \n", temp, *pnt1, pnt1);
   *pnt1 = *pnt2;
   *pnt2 = temp;
 }
@@ -217,7 +230,8 @@ void swapVariables(int *pnt1, int *pnt2)
  * @param radius The radius of the cylinder.
  * @param height The height of the cylinder.
  * @return The volume of the cylinder. */
-float calculateCylinderVolume(float radius, float height)
+float calculateCylinderVolume(float *radius, float *height)   // float *radius = &radius, float *height = &height
 {
-  return PI * radius * radius * height;
+  return PI * (*radius) * *radius * *height;
+  // return PI * radius * radius * height;
 }
