@@ -122,6 +122,14 @@ int main()
   // printf("The value of myShort is %d\n", myShort);
   // printf("Max value for short unsigned integer: %d \n", USHRT_MAX);
 
+  printf("Max of float is %f\n", FLT_MAX);
+  // printf("Max of double is %lf\n", DBL_MAX);
+  // printf("Max of long double is %Lf\n", LDBL_MAX);
+
+  printf("Min of float is %.300f\n", FLT_MIN);
+  printf("Min of double is %.400lf\n", DBL_MIN);
+  printf("Min of long double is %.5500Lf\n", LDBL_MIN);
+
   // https://www.asciitable.com/
   // printf("\n\n");
 
@@ -183,20 +191,20 @@ int main()
 
 
   // // Task 7 continue
-    int a = 45;
-    int b = 22;
-    int *p1;
-    int *p2;
+    // int a = 45;
+    // int b = 22;
+    // int *p1;
+    // int *p2;
 
-    /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
-    p1 = &a;
-    p2 = &b;
-    // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator
-    printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
-    printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
-    swapVariables(&a, &b);
-    printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
-    printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
+    // /* & symbol tells p1 and p2 to point to the memory address where a and b is stored respectively */
+    // p1 = &a;
+    // p2 = &b;
+    // // To print the value in the memory location that pointer is pointing to we need to use the dereferencing operator
+    // printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
+    // printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
+    // swapVariables(&a, &b);
+    // printf("The value of p1 is %d and the memory address location is %p\n", *p1, p1);
+    // printf("The value of p2 is %d and the memory address location is %p\n", *p2, p2);
 
   // Q: What has been swapped? Have the memory addresses of the pointers been swapped
   // or the values held in the memory addresses been swapped. Explain why.

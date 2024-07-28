@@ -1,1 +1,2 @@
 - [Bubble sort visualised](https://www.youtube.com/watch?v=nmhjrI-aW5o)
+- Official Task 4 solution is [prac02/dynamicMemory.c](dynamicMemory.c)
