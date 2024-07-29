@@ -4,7 +4,6 @@
 // #include <limits.h> // this is called header file
 #include <float.h>
 
-
 #define arrayLength(array) (sizeof((array)) / sizeof((array)[0]))
 
 // Task 3
@@ -12,7 +11,7 @@
 #define circleArea(radius) (PI * (radius) * (radius))
 
 // Task 4
-void * badFunction();
+void *badFunction();
 
 int main(int argc, char *argv[])
 {
@@ -37,7 +36,8 @@ int main(int argc, char *argv[])
 
   // exercise
   float radiuses[] = {2.4, 3.5, 1.2, 4, 5};
-  for (int i=0; i < arrayLength(radiuses); i++) {
+  for (int i = 0; i < arrayLength(radiuses); i++)
+  {
     printf("The area of the circle with radiuses %.2f is %.5f\n", radiuses[i], circleArea(radiuses[i]));
   }
   // // manual input
@@ -47,47 +47,75 @@ int main(int argc, char *argv[])
   //   scanf("%f", &radius);
   //   printf("The area of the circle with radius %.5f is %.6f\n", radius, circleArea(radius));
   // }
-  
+
   ///////////////////// Task 4 /////////////////////
   // void *p = badFunction();
   // then run valgrind to check for memory leaks:
-  // valgrind --tool=memcheck --leak-check=yes ./program 
+  // valgrind --tool=memcheck --leak-check=yes ./program
 
-  // 1. 
-  int *pointer1 = malloc(sizeof(int) * 5);
+  // 1.
+  int initialArrayLength;
+  printf("1. Enter the initial number of elements: ");
+  scanf("%d", &initialArrayLength);
 
-  for (int i=0; i < 5; i++) {
+  int *pointer1 = malloc(sizeof(int) * initialArrayLength);
+
+  // 2. Input initial elements
+  printf("2. Enter the elements of the array, enter to confirm each element: ");
+  for (int i = 0; i < initialArrayLength; i++)
+  {
     scanf("%d", &pointer1[i]);
   }
 
-  // 2.
-  printf("Enter the number of elements to be added to the array: ");
-  int extraElementNum;
-  scanf("%d", &extraElementNum);
-  
-  pointer1 = realloc(pointer1, sizeof(int) * (5 + extraElementNum));
-  if (pointer1 == NULL) {
+  // 3. Input the number of extra elements
+  printf("3. Enter the number of elements to be added to the array: ");
+  int extraArrayLength;
+  scanf("%d", &extraArrayLength);
+
+  // 4. Reallocate memory for the extra elements
+  pointer1 = realloc(pointer1, sizeof(int) * (initialArrayLength + extraArrayLength));
+  // NULL means failed memory allocation, could be due to insufficient memory
+  if (pointer1 == NULL)
+  {
     printf("Memory allocation failed\n");
     return 1;
   }
-  for (int i=5; i < 5+extraElementNum; i++) {
+
+  // 5. Input extra elements
+  for (int i = 5; i < 5 + extraArrayLength; i++)
+  {
     printf("Enter the value of the element %d: ", i);
     scanf("%d", &pointer1[i]);
   }
 
-  // 5. Done, free the memory allocation
+  // 6. Done, free the memory allocation. HAVE TO DO THIS TO AVOID MEMORY LEAKS.
   free(pointer1);
 
   // NOTE: Official Task 4 solution is prac02/dynamicMemory.c
+  // Obviously, the functions written in that file are not super well-written
+  // but they do the jobs. I would make the functions more atomic if I were to write them :)
 
-  
   /////////////////////// Task 5 /////////////////////
-
+  char *cityPtr[4] = {"Toowong", "Chermside", "Taringa", "Indooroopilly"};
+  // temporary variable
+  int i, charIndex;
+  // print cities
+  for (i = 0; i < 4; i++)
+  {
+    charIndex = 0;
+    while (*(cityPtr[i] + charIndex) != '\0')
+    {
+      printf("%c", *(cityPtr[i] + charIndex));
+      charIndex++;
+    }
+    printf("\n");
+  }
   return 0;
 }
 
-void * badFunction() {
-      void *p = malloc(100); // allocate 100 bytes 
-      p = malloc(200); // allocate 200 bytes
-      return p;
+void *badFunction()
+{
+  void *p = malloc(100); // allocate 100 bytes
+  p = malloc(200);       // allocate 200 bytes
+  return p;
 }

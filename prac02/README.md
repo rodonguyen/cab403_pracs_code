@@ -1,2 +1,3 @@
 - [Bubble sort visualised](https://www.youtube.com/watch?v=nmhjrI-aW5o)
 - Official Task 4 solution is [prac02/dynamicMemory.c](dynamicMemory.c)
+- [Data Types in C](https://www.geeksforgeeks.org/data-types-in-c/)
