@@ -29,12 +29,17 @@ int main()
   //   float *float_ptr;   // 0.21312
   //   double *double_ptr; // 0.21312
 
-  //   struct my_struct_name
-  //   {
-  //     char letter;
-  //     int favorite_number;
-  //     int not_my_favorite_number;
-  //   } test_struct;
+    struct person
+    {
+      char* name;
+      int id;
+    };
+
+    int favNum;
+    person student = {"John", 105};
+
+    
+
 
   //   printf("\n Type             Size (byte) ");
   //   printf("\n==========================");
@@ -65,10 +70,10 @@ int main()
   // printf("\n my_int address: %p", &my_int);
   // printf("\n my_long address: %p", &my_long);
 
-  // // a bit about struct
-  // test_struct = (struct my_struct_name){'A', 10};
-  // printf("\n test_structure.letter = %c", test_struct.letter);
-  // printf("\n test_structure.favorite_number = %d", test_struct.favorite_number);
+  // a bit about struct
+  test_struct = (struct my_struct_name){'A', 10};
+  printf("\n test_structure.letter = %c", test_struct.letter);
+  printf("\n test_structure.favorite_number = %d", test_struct.favorite_number);
 
   // printf("\n The minimum possible value for an int is %d and max is %d", INT_MIN, INT_MAX);
   // Try to figure out the maths behind the min/max of int. Hint: look at the sizeof int.
