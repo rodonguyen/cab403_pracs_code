@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
   // }
 
   // ----------------------------------------------------------------
-  // // Just my playing around (below), don't overcomplicate it like this
+  // // Rodo sandbox 1: Just my playing around (below), don't overcomplicate it like this
   // printf("\n=====================\n");
   // int i = 0, j = 0;
 
@@ -192,6 +192,29 @@ int main(int argc, char *argv[])
   //     j++;
   //   }
   // }
+
+  // Rodo sandbox 2
+  // Address of the first character 'T' in the first string "Toowong"
+  char *cityPointer[4] = {"Toowong", "Chermside", "Taringa", "Indooroopilly"};
+  char *ptr = cityPointer[0];
+
+  for (int i = 0; i < 45; i++)  // 45 is just an estimate number that above the total number of characters in the strings abit
+  {
+    if (*(ptr + i) == '\0')
+    {
+      printf("Null terminator at %p\n", ptr + i);
+      continue;
+    }
+    printf("Character %c at %p\n", *(ptr + i), ptr + i);
+  }
+  // // Print the character at the current address
+  // printf("Current character: %c\n", *ptr);
+
+  // // Move to the next character by adding 1 to the pointer
+  // ptr = ptr + 1;
+
+  // // Print the character at the new address
+  // printf("Next character: %c\n", *ptr);
 
   putchar('\n');
   return 0;
