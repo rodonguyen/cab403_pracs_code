@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
   //   printf("%p ", &word[i]);
   // }
 
-  char *cityPointer[4] = {"Toowong", "Chermside", "Taringa", "Indooroopilly"};
+  // char *cityPointer[4] = {"Toowong", "Chermside", "Taringa", "Indooroopilly"};
   // printf("%c\n", *cityPointer[1]);
   // printf("%p", cityPointer[1]);
 
@@ -165,17 +165,33 @@ int main(int argc, char *argv[])
   //   printf("\n");
   // }
 
-  for (int i = 0; i < 45; i++)
-  {
-    if (*(cityPointer+i) == '\0')
-    {
-      printf("Found the null terminator at address %p\n", (cityPointer+i));
-    }
-    else
-    {
-      printf("%c at address %p\n", *(cityPointer+i), (cityPointer+i));
-    }
-  }
+  // ----------------------------------------------------------------
+  // // Just my playing around (below), don't overcomplicate it like this
+  // printf("\n=====================\n");
+  // int i = 0, j = 0;
+
+  // while (i < 4)
+  // {
+  //   // Access the i-th string
+  //   char *currentCity = cityPointer[i];
+
+  //   // Access the j-th character of the current string
+  //   char currentChar = *(currentCity + j);
+
+  //   if (currentChar == '\0')
+  //   {
+  //     // End of the current string, move to the next string
+  //     i++;
+  //     j = 0; // Reset j for the next string
+  //     putchar('\n');
+  //   }
+  //   else
+  //   {
+  //     // Print the current character
+  //     printf("%c at address %p\n", currentChar, currentCity+j);
+  //     j++;
+  //   }
+  // }
 
   putchar('\n');
   return 0;
