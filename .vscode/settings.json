@@ -4,7 +4,9 @@
     "limits.h": "c",
     "float.h": "c",
     "unistd.h": "c",
-    "cstdlib": "c"
+    "cstdlib": "c",
+    "stdlib.h": "c",
+    "types.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
