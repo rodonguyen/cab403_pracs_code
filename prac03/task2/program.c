@@ -6,7 +6,8 @@
 
 int main(int argc, char *argv[])
 {
-  pid_t pid = fork();
+  pid_t pid = fork(); 
+
   if (pid == 0)
   {
     printf("\nChild => PPID: %d PID: %d\n", getppid(), getpid());

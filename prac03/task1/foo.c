@@ -7,4 +7,3 @@ void printHelloMake(void) {
 	printf("\nWelcome to Practical 4\n");
 	return;
 }
-	
