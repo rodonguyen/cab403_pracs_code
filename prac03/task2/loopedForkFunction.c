@@ -15,12 +15,16 @@ int main(int argc, char *argv[])
       printf("Child process => PPID=%d, PID=%d\n", getppid(), getpid());
       exit(0);
     }
-    else
+    else if (pid > 0)
     {
       printf("\nParent process => PID=%d", getpid());
       printf("\nWaiting for child processes to finish...\n");
-      wait(NULL);   // issue a wait() system call to move itself off the ready queue until the termination of the child
+      wait(NULL); // issue a wait() system call to move itself off the ready queue until the termination of the child
       printf("\nChild process finished.\n");
+    }
+    else
+    {
+      printf("\nUnable to create child process.\n");
     }
   }
   return EXIT_SUCCESS;

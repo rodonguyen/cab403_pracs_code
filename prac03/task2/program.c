@@ -6,19 +6,23 @@
 
 int main(int argc, char *argv[])
 {
-  pid_t pid = fork(); 
+  pid_t pid = fork();
+  //        ^
+  // From here on, the program is splitted into two processes
+  // printf("\nFork returned: %d\n", pid);
 
   if (pid == 0)
   {
-    printf("\nChild => PPID: %d PID: %d\n", getppid(), getpid());
+    printf("\nC: Child => PPID: %d PID: %d\n", getppid(), getpid());
     exit(EXIT_SUCCESS);
+    printf("\nC: This will not be printed because the child process is terminated.\n");
   }
   else if (pid > 0)
   {
-    printf("\nParent => PID: %d\n", getpid());
-    printf("\nWaiting for child process to finish.\n");
+    printf("\nP: Parent => PID: %d\n", getpid());
+    printf("\nP: Waiting for child process to finish.\n");
     wait(NULL);
-    printf("\nChild process finished.\n");
+    printf("\nP: Child process finished.\n");
   }
   else
   {

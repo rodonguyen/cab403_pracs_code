@@ -4,7 +4,6 @@
 # 	gcc -o hellomake hellomake.c hellofunction.c -I.
 
 
-
 # #==========================EX2=============================
 # # why are we replacing the extenstions to .o ???
 
@@ -20,9 +19,11 @@
 
 # # Here, we are replacing .c to .o in the dependencies list. AND the makefile is smart enough to know to compile the .c files into .o files first 
 # # before linking them together to create the final executable.
-# hellomake: hellomake.o hellofunction.o
+# hellomake: hellomake.o hellofunction.o hellomake.h
 # 	$(CC) -o hellomake hellomake.o hellofunction.o
 
+# # 1. compile c files into o files (object files). is hidden but the compiler knows what to do
+# # 2. link the o files together to create the final executable program
 
 #===========================EX3============================
 
@@ -54,13 +55,18 @@
 # CFLAGS=-I.
 # DEPS = hellomake.h    # Macro DEPS (dependencies)
 
-# # $@ - The file name of the target of the rule.
-# # $< - The name of the first item in the dependencies list.
+# # $@ - The file name of the target of the rule (including the extension)
+# # $< - The first file name of the dependencies list.
 # # [target]: [dependencies]
 # # 	[command]
 
+
+# # hello.o: hello.c hello.h
 # %.o: %.c $(DEPS)
 # 	$(CC) -c -o $@ $< $(CFLAGS)
+
+# # $@ => hello.o
+# # $< => hello.c
 # # $(CC) -c -o $@          $<          $(CFLAGS)
 # # example translation:	$(CC) -c -o hellomake.o hellomake.c -I.
 
@@ -68,41 +74,44 @@
 # 	$(CC) -o hellomake hellomake.o hellofunction.o
 
 # #--------makefile 4--------
-# # This makes 2 more modifications:
+# # 2 more modifications:
 # # -  $^ - The names of all the dependencies, with spaces between them.
 # # -  Use OBJ instead of listing the .o files directly in the target line.
 # CC=gcc
 # CFLAGS=-I.
-# DEPS = hellomake.h
-# OBJ = hellomake.o hellofunction.o 
+# DEPS = hellomake.h 
+# OBJ = hellomake.o hellofunction.o
 
 # %.o: %.c $(DEPS)
 # 	$(CC) -c -o $@ $< $(CFLAGS)
-# 	gcc   -c -o hellomake.o hellomake.c
 
 # hellomake: $(OBJ)
 # 	$(CC) -o $@ $^ $(CFLAGS)
 
+
 # #--------makefile 5--------
 OBJS := foo.o bar.o
+CFLAGS=-I.
 
 # link
 programName: $(OBJS)
 		gcc $(OBJS) -o $@
 
-# pull in dependency info for *existing* .o files, so the object files know what their dependencies are
+# Information gathering step
+# this step will instruct the makefile to include the dependency info for each object file during the compilation process
 -include $(OBJS:.o=.d)
 
 # compile and generate dependency info
+# $* is a special variable that matches the stem of the target (meaning filename without extension)
 %.o: %.c
-		gcc -c $(CFLAGS) $*.c -o $*.o
-		gcc -MM $(CFLAGS) $*.c > $*.d
+# we can use $@ instead of $*.o
+		gcc -c $(CFLAGS) $*.c -o $*.o		
+# d file is created in this step. We are saving the dependency information for next compilation
+		gcc -MM $(CFLAGS) $*.c > $*.d 
 
-# remove compilation products
+# remove compilation products. We just added here in Prac03 for the sake of demonstrating more utility of makefile
 clean:
 		rm -f programName *.o *.d
-
-
 
 
 
