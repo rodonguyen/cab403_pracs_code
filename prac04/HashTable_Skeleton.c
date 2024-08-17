@@ -19,8 +19,8 @@ void item_print(item_t *i) {
 }
 
 // A hash table mapping a string to an integer.
-typedef struct htab htab_t;
-struct htab {
+typedef struct hash_table my_hash_table;
+struct hash_table {
     item_t **buckets;
     size_t size;
 };
@@ -29,7 +29,7 @@ struct htab {
 // pre: true
 // post: (return == false AND allocation of table failed)
 //       OR (all buckets are null pointers)
-bool htab_init(htab_t *h, size_t n) {
+bool htab_init(my_hash_table *h, size_t n) {
     // TODO: implement this function
 }
 
@@ -46,12 +46,12 @@ size_t djb_hash(char *s) {
 }
 
 // Calculate the offset for the bucket for key in hash table.
-size_t htab_index(htab_t *h, char *key) {
+size_t htab_index(my_hash_table *h, char *key) {
     return djb_hash(key) % h->size;
 }
 
 // Find pointer to head of list for key in hash table.
-item_t *htab_bucket(htab_t *h, char *key) {
+item_t *htab_bucket(my_hash_table *h, char *key) {
     // TODO: implement this function (uses htab_index())
 }
 
@@ -59,7 +59,7 @@ item_t *htab_bucket(htab_t *h, char *key) {
 // pre: true
 // post: (return == NULL AND item not found)
 //       OR (strcmp(return->key, key) == 0)
-item_t *htab_find(htab_t *h, char *key) {
+item_t *htab_find(my_hash_table *h, char *key) {
     // TODO: implement this function
 }
 
@@ -67,14 +67,14 @@ item_t *htab_find(htab_t *h, char *key) {
 // pre: htab_find(h, key) == NULL
 // post: (return == false AND allocation of new item failed)
 //       OR (htab_find(h, key) != NULL)
-bool htab_add(htab_t *h, char *key, int value) {
+bool htab_add(my_hash_table *h, char *key, int value) {
     // TODO: implement this function
 }
 
 // Print the hash table.
 // pre: true
 // post: hash table is printed to screen
-void htab_print(htab_t *h) {
+void htab_print(my_hash_table *h) {
     printf("hash table with %ld buckets\n", h->size);
     for (size_t i = 0; i < h->size; ++i)  {
         printf("bucket %ld: ", i);
@@ -95,7 +95,7 @@ void htab_print(htab_t *h) {
 // Delete an item with key from the hash table.
 // pre: htab_find(h, key) != NULL
 // post: htab_find(h, key) == NULL
-void htab_delete(htab_t *h, char *key) {
+void htab_delete(my_hash_table *h, char *key) {
     item_t *head = htab_bucket(h, key);
     item_t *current = head;
     item_t *previous = NULL;
@@ -117,7 +117,7 @@ void htab_delete(htab_t *h, char *key) {
 // Destroy an initialised hash table.
 // pre: htab_init(h)
 // post: all memory for hash table is released
-void htab_destroy(htab_t *h) {
+void htab_destroy(my_hash_table *h) {
     // TODO: implement this function
 }
 
@@ -125,7 +125,7 @@ int main(int argc, char **argv) {
     // create a hash table with 10 buckets
     printf("creating hash table:\n");
     size_t buckets = 10;
-    htab_t h;
+    my_hash_table h;
     if (!htab_init(&h, buckets))     {
         printf("failed to initialise hash table\n");
         return EXIT_FAILURE;
