@@ -1,0 +1,7 @@
+
+- Task 2  
+  The `fflush()` function in C is used to flush (or clear) the output buffer of a stream. In this case, fflush(stdout) is called after the printf() statement to ensure that the output is immediately displayed on the console.
+
+  By default, the output to the standard output stream (stdout) is buffered, which means that the data is stored in a buffer before being written to the console. This buffering improves performance by reducing the number of system calls required to write data. However, it also means that the output may not be immediately visible on the console.
+
+  In some cases, you may want to ensure that the output is immediately displayed, especially when you need to see the output in real-time or when the program is performing time-sensitive operations. Calling fflush(stdout) forces the buffer to be flushed and the data to be immediately written to the console.
