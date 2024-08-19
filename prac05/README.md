@@ -13,4 +13,9 @@
 
   - [Good to look at hash table in self-learning Prac04](../prac04/HashTable_Sol.c)
 
+
+- Task 7
+  - Probably the best example of using threads in this prac, let's do this prior to Task 6
+
+- Task 6
   - [`pi.c` paralellisation visualised](https://docs.google.com/spreadsheets/d/1EE0PfpnYO5xm4ezuVSI7JqDVzVUSruqeMytdBpgAZGY/edit?usp=sharing)
