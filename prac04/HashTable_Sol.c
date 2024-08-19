@@ -218,7 +218,9 @@ int main(int argc, char **argv)
     // // clean up hash table
     // htab_destroy(&h);
 
-    // create a hash table with 10 buckets
+
+    // EXPERIMENT:
+    // Create a hash table with 2 buckets with the aim of creating a hash collision and seeing 2 items in the same bucket.
     printf("creating hash table:\n");
     size_t buckets = 2;
     my_hash_table h;
