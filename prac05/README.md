@@ -13,4 +13,4 @@
 
   - [Good to look at hash table in self-learning Prac04](../prac04/HashTable_Sol.c)
 
-  
+  - [`pi.c` paralellisation visualised](https://docs.google.com/spreadsheets/d/1EE0PfpnYO5xm4ezuVSI7JqDVzVUSruqeMytdBpgAZGY/edit?usp=sharing)
