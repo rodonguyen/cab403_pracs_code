@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-  long num_steps = 10000000;
+  long num_steps = 1000000000;
   double step;
   int i = 0;
   double x, pi, sum = 0.0;
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
   pi = step * sum;
   double end = omp_get_wtime();
   
-  printf("The value for pi = %.18f and the execution time is %fs.\n", pi, end - start);
+  printf("The value for pi = %.30f and the execution time is %fs.\n", pi, end - start);
   
   return EXIT_SUCCESS;
 }
