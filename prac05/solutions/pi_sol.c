@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUM_THREADS 100
+#define NUM_THREADS 1000
 
 int main(int argc, char *argv[]) {
 	long num_steps = 1000000000;
@@ -13,6 +13,7 @@ int main(int argc, char *argv[]) {
   
 	double start = omp_get_wtime();
 	omp_set_num_threads(NUM_THREADS);
+
 	#pragma omp parallel
 	{
 		int i=0;
@@ -24,6 +25,7 @@ int main(int argc, char *argv[]) {
 			sum[id] += 4.0/(1.0+x*x);
 		}
 	}
+  
 	int i=0;
 	for (i=0; i< NUM_THREADS; i++) {
 		pi = pi + sum[i]*step;
