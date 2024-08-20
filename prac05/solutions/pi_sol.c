@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define NUM_THREADS 2000
+#define NUM_THREADS 100
 
 int main(int argc, char *argv[]) {
 	long num_steps = 1000000000;

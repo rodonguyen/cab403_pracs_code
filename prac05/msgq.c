@@ -6,14 +6,14 @@
 
 #define FALSE 0
 #define TRUE !FALSE
-#define BUFFER_SIZE 5
+#define BUFFER_SIZE 10
 #define MAX_SLEEP 5.0
 
 typedef struct message_queue
 {
-  time_t buffer[BUFFER_SIZE];
+  time_t buffer[BUFFER_SIZE];  
   int keep_running;
-  int position;
+  int position;   // position of the next item in "buffer" to be consumed
   int has_room;
 } mq; //mq is an alias for `struct message_queue`
 
@@ -27,6 +27,7 @@ void *producer_function(void *arg)
 
   while (message_queue->keep_running)
   {
+    // Part 1; sleep for a random amount of time
     /*
      * The ANSI C standard only states that rand() is a
      * random number generator which generates integers
@@ -35,7 +36,7 @@ void *producer_function(void *arg)
      *
      */
     /*sleeptime = 1 + (int)( MAX_SLEEP * rand() / (RAND_MAX + 1.0) ); */
-    sleeptime = (int)(MAX_SLEEP * rand() / (RAND_MAX + 1.0));
+    sleeptime = (int)(MAX_SLEEP * rand() / (RAND_MAX + 1.0));  // 0 -> 4.9999 => 0 -> 4
     printf("Producer sleeping for %d seconds\n", sleeptime);
     fflush(stdout);
     sleep(sleeptime);
@@ -45,6 +46,7 @@ void *producer_function(void *arg)
 
     /* this is the blocking send */
 
+    // Part 2: Wait until there is room in the buffer
     while (message_queue->has_room == FALSE)
     {
       /* no room */
@@ -56,6 +58,7 @@ void *producer_function(void *arg)
     printf("Producer UnBlocked\n");
     fflush(stdout);
 
+    // Part 3: Produce - Add the message to the buffer
     message_queue->buffer[message_queue->position++] = message;
 
     printf("\t\t\t\tItems in buffer: %d\n", message_queue->position);
@@ -150,6 +153,7 @@ int main()
   }
 
   fgets(ignore_this, 80, stdin);
+
   messages.keep_running = FALSE;
   if (pthread_join(producer, NULL))
   {

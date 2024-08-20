@@ -23,7 +23,7 @@ void *sum_some_numbers(void *ptr);
 int main(int argc, char *argv[])
 {
   pthread_t thread1, thread2, thread3; /* thread variables */
-  thread_data data1, data2, data3;        /* structs to be passed to threads */
+  thread_data data1, data2, data3;     /* structs to be passed to threads */
 
   /* initialize data to pass to thread 1 */
   data1.thread_no = 1;
@@ -52,6 +52,8 @@ int main(int argc, char *argv[])
   pthread_join(thread1, NULL);
   pthread_join(thread2, NULL);
   pthread_join(thread3, NULL);
+
+  printf("All threads have finished\n");
 
   /* exit */
   return EXIT_SUCCESS;

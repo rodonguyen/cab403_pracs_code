@@ -19,3 +19,6 @@
 
 - Task 6
   - [`pi.c` paralellisation visualised](https://docs.google.com/spreadsheets/d/1EE0PfpnYO5xm4ezuVSI7JqDVzVUSruqeMytdBpgAZGY/edit?usp=sharing)
+
+
+Find out how threads are managed when there are more threads than CPU cores.

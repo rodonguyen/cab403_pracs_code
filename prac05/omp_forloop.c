@@ -8,7 +8,7 @@ int main(int argc, char *argv[]) {
 
 	// Modifiers to the construct - shared specifies the listed variables should
 	// be shared by all threads. The "default(none) shared(val)" can even be removed without any issues
-	#pragma omp parallel default(none) shared(val)
+	#pragma omp parallel default(none) shared(the_squares)
 	{
 		//we'll use our 4 threads to calculate & store the cubes of 1 - 9
 		#pragma omp for
