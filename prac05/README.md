@@ -13,12 +13,13 @@
 
   - [Good to look at hash table in self-learning Prac04](../prac04/HashTable_Sol.c)
 
+- Task 3
+  - [So... I can create more threads than cores?](https://www.reddit.com/r/cpp_questions/comments/snl23k/can_i_use_more_threads_in_my_program_than_the/)
+
 
 - Task 7
-  - Probably the best example of using threads in this prac, let's do this prior to Task 6
+  - Probably the best example of using threads in this prac, let's do this prior to Task 6.
 
 - Task 6
   - [`pi.c` paralellisation visualised](https://docs.google.com/spreadsheets/d/1EE0PfpnYO5xm4ezuVSI7JqDVzVUSruqeMytdBpgAZGY/edit?usp=sharing)
 
-
-Find out how threads are managed when there are more threads than CPU cores.
