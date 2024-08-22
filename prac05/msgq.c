@@ -17,6 +17,9 @@ typedef struct message_queue
   int has_room;
 } mq; //mq is an alias for `struct message_queue`
 
+
+
+
 void *producer_function(void *arg)
 {
   mq *message_queue = arg;

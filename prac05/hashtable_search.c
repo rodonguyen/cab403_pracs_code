@@ -231,7 +231,6 @@ int main(int argc, char **argv)
     search = atoi(argv[1]);
 
   double start = omp_get_wtime();
-
   htab_search_value(&h, search);
   double end = omp_get_wtime();
   printf("The execution time is %fs using 1 thread.\n", end - start);

@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     x = (i + .5) * step;
     y = 4.0 / (1.0 + x * x);
     sum = sum + y;
+    // sum = sum + 4.0 / (1.0 + x * x);
   }
   pi = step * sum;
   double end = omp_get_wtime();

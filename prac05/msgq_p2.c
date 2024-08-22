@@ -212,6 +212,9 @@ int main()
     abort();
   }
 
+  pthread_setschedprio(producer, 10);
+  pthread_setschedprio(consumer, 2);
+  
   fgets(ignore_this, 80, stdin);
   messages.keep_running = FALSE;
   if (pthread_join(producer, NULL))

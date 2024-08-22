@@ -13,7 +13,7 @@ int main(int argc, char *argv[]) {
 		// we'll use our 4 threads to calculate & store the cubes of 1 - 9
     // When using #pragma omp for, the loop is divided among the threads
 		#pragma omp for
-		for (int i = 1; i < 9; ++i)
+		for (int i = 1; i < 10; ++i)
 		{
 			the_squares[i - 1] = i * i * i;
 			int thread = omp_get_thread_num();

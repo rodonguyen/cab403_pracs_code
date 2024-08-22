@@ -216,7 +216,7 @@ void *thread_search(void *td_void)
 // post: each key with value 'search' has been printed to stdout
 void htab_search_value(htab_t *h, int search)
 {
-  const int THREADS = 10000;
+  const int THREADS = 1000;
 
   pthread_t threads[THREADS];
   struct tdata threaddata[THREADS];

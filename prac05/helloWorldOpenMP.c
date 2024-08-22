@@ -3,21 +3,21 @@
 #include <stdlib.h>
 
 
-void Hello(void); /* Function to thread */
+void hello(void); /* Function to thread */
 
 int main(int argc, char *argv[])
 {
-  int num_threads = 4;
+  int num_threads = 100;
   omp_set_num_threads(num_threads);
 
   #pragma omp parallel
   {
-    Hello();
+    hello();
   }
   return EXIT_SUCCESS;
 }
 
-void Hello(void)
+void hello(void)
 {
   int my_rank = omp_get_thread_num();
   int thread_count = omp_get_num_threads();
