@@ -51,7 +51,7 @@ void dv_clear(dbl_vector_t *vec)
 void dv_push(dbl_vector_t *vec, double new_item)
 {
   vec->size++;
-  dv_ensure_capacity(vec, vec->size * sizeof(double));  // tricky part
+  dv_ensure_capacity(vec, vec->size * sizeof(double));  // a minor tricky part
   vec->data[vec->size - 1] = new_item;
 }
 

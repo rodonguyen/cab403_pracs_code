@@ -18,9 +18,10 @@ typedef enum operation
  */
 typedef struct shared_data
 {
-  /// Used by controller to notify worker when a task is available.
+  // Used by controller to notify worker when a task is available.
+  // Semephore: a variable or abstract data type used to control access to a common resource by multiple threads and avoid critical section problems in a concurrent system such as a multitasking operating system
   sem_t controller_semaphore;
-
+  
   /// Used by worker to notify controller when a result is available.
   sem_t worker_semaphore;
 
