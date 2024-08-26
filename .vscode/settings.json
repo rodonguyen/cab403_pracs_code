@@ -10,7 +10,10 @@
     "omp.h": "c",
     "hellomake.h": "c",
     "dbl_vector.h": "c",
-    "math.h": "c"
+    "math.h": "c",
+    "operations.h": "c",
+    "wait.h": "c",
+    "pthread.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
