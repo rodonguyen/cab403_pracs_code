@@ -13,7 +13,8 @@
     "math.h": "c",
     "operations.h": "c",
     "wait.h": "c",
-    "pthread.h": "c"
+    "pthread.h": "c",
+    "time.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

@@ -15,7 +15,7 @@ int main(int argc, char *argv[])
   pthread_join(thread1, NULL);
   pthread_join(thread2, NULL);
   // pthread_join(thread3, NULL);
-  printf("\n\n2 Threads: globalVar = %d\n", globalVar);
+  printf("2 Threads: globalVar = %d\n", globalVar);
   return 0;
 }
 
