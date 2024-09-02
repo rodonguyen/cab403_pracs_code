@@ -7,12 +7,11 @@
 #define MAX_ITEMS 5
 
 int buffer[BUFFER_SIZE] = {0};
-int in = 0;
-int out = 0;
-int produced_count = 0;
-int consumed_count = 0;
-
+int produce_pointer = 0;
+int consume_pointer = 0;
 pthread_mutex_t mutex;
+pthread_cond_t full, empty;
+
 void *producer(void *arg);
 void *consumer(void *arg);
 
@@ -29,11 +28,19 @@ void *producer(void *arg)
 {
   for (;;)
   {
-    while (((in + 1) % BUFFER_SIZE) == out)
-      ; // while the buffer is full, wait here!
-    buffer[in] = 1;
-    in = (in + 1) % BUFFER_SIZE;
+    pthread_mutex_lock(&mutex);
+    while ((produce_pointer + 1) % BUFFER_SIZE == consume_pointer) // while the buffer is full
+    {
+      pthread_cond_wait(&empty, &mutex); // wait until there is an "empty" buffer, while waiting, unlock the mutex for other threads}
+    }
+
+    buffer[produce_pointer] = 1;
+    produce_pointer = (produce_pointer + 1) % BUFFER_SIZE;
+
+    pthread_cond_signal(&full);
     printBuffer();
+    pthread_mutex_unlock(&mutex);
+
     sleep(1);
   }
 }
@@ -42,11 +49,18 @@ void *consumer(void *arg)
 {
   for (;;)
   {
-    while (in == out)
-      ; // while there's nothing in the buffer, wait here!
-    buffer[out] = 0;
-    out = (out + 1) % BUFFER_SIZE;
+    pthread_mutex_lock(&mutex);
+    while (produce_pointer == consume_pointer)
+    {
+      pthread_cond_wait(&full, &mutex);
+    }
+    buffer[consume_pointer] = 0; // consume/ remove item from buffer
+    consume_pointer = (consume_pointer + 1) % BUFFER_SIZE;
+
+    pthread_cond_signal(&empty);
     printBuffer();
+    pthread_mutex_unlock(&mutex);
+
     sleep(1);
   }
 }
@@ -66,6 +80,7 @@ int main(int argc, char *argv[])
   pthread_join(producerThread1, NULL);
   pthread_join(consumerThread1, NULL);
   pthread_join(consumerThread2, NULL);
+
   pthread_mutex_destroy(&mutex);
 
   return 0;

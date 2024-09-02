@@ -14,7 +14,9 @@
     "operations.h": "c",
     "wait.h": "c",
     "pthread.h": "c",
-    "time.h": "c"
+    "time.h": "c",
+    "stdint.h": "c",
+    "cstdint": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
