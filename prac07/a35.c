@@ -1,16 +1,27 @@
-/*
- * D.4.4
- *
- * Sections of code should not be 'commented out'
- */
-#include <stdio.h>
-#include <stdint.h>
 
-int main ( void ) {
-   int32_t a;
-   /* a = 3; Non-compliant */
-    a = 1;
-   // a = 4; Non-compliant
-    printf ( "%d \n", a );
+
+/* In foo.h */
+void foo();
+
+/* In foo.c */
+void foo() {
+ int i = 3;
+ printf("i value: %d\n", i);
 }
-/* end of D_04_04.c */
+
+
+/* In caller.c */
+#include "foo.h"
+foo(3);
+
+
+////////////////////////////
+// /* In foo.h */
+// void foo(void);
+
+// /* In foo.c */
+// void foo(void)
+// {
+//   int i = 3;
+//   printf("i value: %d\n", i);
+// }
