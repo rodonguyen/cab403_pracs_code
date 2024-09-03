@@ -16,7 +16,8 @@
     "pthread.h": "c",
     "time.h": "c",
     "stdint.h": "c",
-    "cstdint": "c"
+    "cstdint": "c",
+    "stdbool.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

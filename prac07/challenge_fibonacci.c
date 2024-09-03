@@ -1,20 +1,43 @@
 #include <stdio.h>
+#include <stdint.h>
+#include <limits.h>
 
-int Fibonacci(int);
+unsigned long Fibonacci(int);
 
-int main()
+int main(void)
 {
-  int n, i = 0, c;
+  int number;
   printf("Enter the number of elements: ");
 
-  scanf("%d", &n);
+  int error = scanf("%d", &number);
 
-  printf("Fibonacci series\n");
-
-  for (c = 1; c <= n; c++)
+  // validate interger input
+  if (error != 1)
   {
-    printf("%d\n", Fibonacci(i));
-    i++;
+    printf("Error: Invalid input. Please enter an integer\n");
+    return 1;
+  }
+  // Validate value
+  // if (number < 0)
+  // {
+  //   printf("Error: The input must be greater than 0\n");
+  //   return 1;
+  // }
+  if (number < 0)
+  {
+    printf("Error: input exceed INT_MAX value (%d)\n", INT_MAX);
+    return 1;
+  }
+  if (number > 94)
+  {
+    printf("Error: The fibonacci number will exceed the max of the used type (unsigned long)\n");
+    return 1;
+  }
+
+  printf("Fibonacci series:\n");
+  for (int i = 1; i <= number; i++)
+  {
+    printf("fib %d = %lu\n", i, Fibonacci(i-1));
   }
 
   return 0;
@@ -31,24 +54,52 @@ int main()
 // }
 
 /////////////////////////////////////////////////
+// https://leetcode.com/problems/fibonacci-number/description/ 
 
-int Fibonacci(int n)
+// takes argument from 0 index
+unsigned long Fibonacci(int n)
 {
-  if (n == 0)
-    return 0;
-  else if (n == 1)
-    return 1;
+  if (n < 2)
+    return n;
+  
+  unsigned long previous_fib_number = 0;
+  unsigned long fib_number = 1;
+  unsigned long temp;
 
-  int prev_fib_sum = 0;
-  int fib_sum = 1;
-
+  // next number = previous number + previous previous number
   for (int i = 2; i <= n; i++)
   {
-    fib_sum = fib_sum + prev_fib_sum;
-    prev_fib_sum = fib_sum - prev_fib_sum; // can also use a temp variable storing fib_sum in the beginning of each iteration to make it more readable
+    temp = fib_number;
+    fib_number = fib_number + previous_fib_number;
+    previous_fib_number = temp;
   }
-  return fib_sum;
+
+  return fib_number;
 }
+
+
+
+
+
+
+// int Fibonacci(int n)
+// {
+//   if (n == 0)
+//     return 0;
+//   else if (n == 1)
+//     return 1;
+
+//   int prev_fib_sum = 0;
+//   int fib_sum = 1;
+
+//   for (int i = 2; i <= n; i++)
+//   {
+//     fib_sum = fib_sum + prev_fib_sum;
+//     prev_fib_sum = fib_sum - prev_fib_sum; // can also use a temp variable storing fib_sum in the beginning of each iteration to make it more readable
+//   }
+
+//   return fib_sum;
+// }
 
 // 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610
 
