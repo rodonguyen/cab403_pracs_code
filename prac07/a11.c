@@ -13,8 +13,15 @@ int main()
     /* Read in an integer from the user
     
     If you enter a character instead of a number, the scanf function will fail to read the input as an integer. This failure causes the num variable to retain its previous value, which means it will not be equal to 0, and the loop will continue indefinitely. */
-    scanf("%d", &num);
+    int error = scanf("%d", &num);
     
+    // Validate the input, should be integer
+    if (error != 1)
+    {
+      printf("Error: Invalid input. Please enter an integer\n");
+      return 1;
+    }
+
     /* Add num to sum */
     sum = sum + num;
   } while (num != 0);

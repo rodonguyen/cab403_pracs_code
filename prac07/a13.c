@@ -10,8 +10,7 @@
 //////////////////////////////////////
 #include <stdio.h>
 
-// int main()
-int main(void)
+int main()
 {
     static int i = 5;
     if (--i){

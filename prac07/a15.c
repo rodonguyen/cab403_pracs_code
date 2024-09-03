@@ -1,17 +1,3 @@
-/*
- * R.21.17.c
- * Release: 2022-09-02
- * Example from MISRA C:2012 AMD1
- * Copyright: Queensland University of Technology
- * Reference:  https://gitlab.com/MISRA/MISRA-C/MISRA-C-2012/Example-Suite)
- */
-
-/*
- * R.21.17
- * Use of the string handling functions from <string.h> shall not result in
- * accesses beyond the bounds of the objects referenced by their pointer parameters
- */
-
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
@@ -20,20 +6,22 @@ static void f_17(const char *input_string)
 {
   char string[] = "Short";
 
-  printf("%s \n", string); /* we directly use stdio here. you should define your own IO. */
+  printf("Before: %s \n", string); /* we directly use stdio here. you should define your own IO. */
 
   /* Non-compliant use of strcpy as it
    *  results in writes beyond the end of 'string'*/
   // (void)strcpy(string, "Too long to fit ");
-  // printf("%s", string);
+  // printf("%s \n", string);
 
   // Compliant use of strcpy as 'string' is only mocified if 'input_string' will fit.
+  
+  // if input_string is less than the size of string, then copy input_string to string
   if (strlen(input_string) < (sizeof(string) - 1U)) /* Compliant */
   {
     (void)strcpy(string, input_string);
   }
 
-  printf("%s \n", string);
+  printf("After: %s \n", string);
 }
 
 static void g_17(void)
@@ -54,7 +42,7 @@ static void g_17(void)
   if (sz > 1U)
   {
     /* use “%zu” to print the variables of size_t length. */
-    printf("%zu \n", sz);
+    printf("size of text: %zu \n", sz);
   }
 
   if (sz1 > 1U)
@@ -73,5 +61,3 @@ int main(void)
   printf("\ng_17:\n");
   g_17();
 }
-
-/* end of R_21_17.c */
