@@ -2,11 +2,11 @@
 
 Each folder has a README file. Read that first to get some tips and additional info.
 
-Prac 07
+### Prac 07
 - https://leetcode.com/problems/fibonacci-number/solutions/
 - https://search.brave.com/search?q=dynamic+programming&source=desktop
 
-Prac08
+### Prac08  
 a1:
 - 1 terminal runs the TCP server `./tcp <port number>`
 - 1 terminal (acts as the client) runs `echo <your message> | nc localhost <port number>` to send message to the server
