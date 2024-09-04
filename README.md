@@ -20,7 +20,3 @@ a2:
 - 1 terminal runs the UDP server `./udp <port number>`
 - 1 terminal (acts as the client) runs `nc -u localhost <port number>` and type your message followed by an Enter to send the message to the server. 
 
-
-
-
-
