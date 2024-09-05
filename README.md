@@ -2,4 +2,6 @@
 
 Each folder has a README file. Read that first to get some tips and additional info.
 
-Update 25 July
+Prac 07
+- https://leetcode.com/problems/fibonacci-number/solutions/
+- https://search.brave.com/search?q=dynamic+programming&source=desktop

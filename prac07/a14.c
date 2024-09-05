@@ -29,5 +29,3 @@ int main(void)
 }
 
 // uint16 is 2 bytes
-
-/* end of R_21_15.c */

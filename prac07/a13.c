@@ -10,12 +10,16 @@
 //////////////////////////////////////
 #include <stdio.h>
 
-int main()
+int func1(int hi){}
+int func2(void){}
+
+
+int main(void)
 {
     static int i = 5;
     if (--i){
         printf("%d ", i);
-        main(10);
+        func2(10);
     }
     printf("\n");
 }

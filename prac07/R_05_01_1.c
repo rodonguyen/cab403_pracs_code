@@ -1,14 +1,4 @@
-/*
- * R_5_1_1.c
- * Reference:  https://gitlab.com/MISRA/MISRA-C/MISRA-C-2012/Example-Suite
- */
-
-/*
- * R.5.1
- *
- * External identifiers shall be distinct
- */
-
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/
 #include <stdio.h>
 #include <stdint.h>
 #include <string.h>
@@ -48,4 +38,10 @@ int main(void)
 
   R_5_1_2();
 }
-/* end of R_05_01_1.c */
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/
+/* RUN WITH THIS COMMAND gcc R_05_01_1.c  R_05_01_2.c -o program  -Wall*/

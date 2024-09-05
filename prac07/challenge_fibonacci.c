@@ -3,6 +3,7 @@
 #include <limits.h>
 
 unsigned long Fibonacci(int);
+// int Fibonacci(int);
 
 int main(void)
 {
@@ -11,7 +12,7 @@ int main(void)
 
   int error = scanf("%d", &number);
 
-  // validate interger input
+  // validate integer input
   if (error != 1)
   {
     printf("Error: Invalid input. Please enter an integer\n");
@@ -38,6 +39,7 @@ int main(void)
   for (int i = 1; i <= number; i++)
   {
     printf("fib %d = %lu\n", i, Fibonacci(i-1));
+    // printf("fib %d = %d\n", i, Fibonacci(i-1));
   }
 
   return 0;
@@ -47,19 +49,33 @@ int main(void)
 // {
 //   if (n == 0)
 //     return 0;
-//   else if (n == 1)
+  
+//   if (n == 1)
 //     return 1;
-//   else
-//     return (Fibonacci(n - 1) + Fibonacci(n - 2));
+  
+//   // dynamic programming
+//   int previous_fib_number = 0;
+//   int fib_number = 1;
+//   int temp;
+
+//   // next number = previous number + previous previous number
+//   for (int i = 2; i <= n; i++)
+//   {
+//     temp = fib_number;
+//     fib_number = fib_number + previous_fib_number;
+//     previous_fib_number = temp;
+//   }
+//   return fib_number;
 // }
 
 /////////////////////////////////////////////////
 // https://leetcode.com/problems/fibonacci-number/description/ 
 
-// takes argument from 0 index
+
+
 unsigned long Fibonacci(int n)
 {
-  if (n < 2)
+  if (n >= 0 && n < 2)
     return n;
   
   unsigned long previous_fib_number = 0;
@@ -77,29 +93,6 @@ unsigned long Fibonacci(int n)
   return fib_number;
 }
 
-
-
-
-
-
-// int Fibonacci(int n)
-// {
-//   if (n == 0)
-//     return 0;
-//   else if (n == 1)
-//     return 1;
-
-//   int prev_fib_sum = 0;
-//   int fib_sum = 1;
-
-//   for (int i = 2; i <= n; i++)
-//   {
-//     fib_sum = fib_sum + prev_fib_sum;
-//     prev_fib_sum = fib_sum - prev_fib_sum; // can also use a temp variable storing fib_sum in the beginning of each iteration to make it more readable
-//   }
-
-//   return fib_sum;
-// }
 
 // 0 1 1 2 3 5 8 13 21 34 55 89 144 233 377 610
 

@@ -17,7 +17,9 @@
     "time.h": "c",
     "stdint.h": "c",
     "cstdint": "c",
-    "stdbool.h": "c"
+    "stdbool.h": "c",
+    "string.h": "c",
+    "r_05_01.h": "c"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }

@@ -4,14 +4,20 @@
 void f1(void)
 {
   uint16_t code[10];
-  // code[0] = 109;
-  // code[1] = 100;
-  // code[2] = 052;
-  // code[3] = 071;
+
+  // code[0] = 70000;
+  // code[1] = 70000U;
+  // code[2] = 65000;
+  // code[3] = 65000U;
+
+  // code[0] = 109U;
+  // code[1] = 100U;
+  // code[2] = 052U;
+  // code[3] = 071U;
   code[0] = 109U;
   code[1] = 100U;
-  code[2] = 52U;
-  code[3] = 71U;
+  code[2] = 052U; // receive 052 as octal number with prefix 0
+  code[3] = 071U;
   
 
   for (uint16_t i = 0; i < 4; i++)

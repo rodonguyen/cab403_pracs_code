@@ -4,19 +4,19 @@
 
 static void f_17(const char *input_string)
 {
-  char string[] = "Short";
+  char string[6] = "Short";
 
   printf("Before: %s \n", string); /* we directly use stdio here. you should define your own IO. */
 
   /* Non-compliant use of strcpy as it
    *  results in writes beyond the end of 'string'*/
-  // (void)strcpy(string, "Too long to fit ");
-  // printf("%s \n", string);
+  (void)strcpy(string, "Too long to fit ");
+  printf("%s \n", string);
 
   // Compliant use of strcpy as 'string' is only mocified if 'input_string' will fit.
   
   // if input_string is less than the size of string, then copy input_string to string
-  if (strlen(input_string) < (sizeof(string) - 1U)) /* Compliant */
+  if (strlen(input_string) < (sizeof(string) - 1U)) /* Checking if string can contain whatever input_string is having / size of string can fit input_string. Compliant */
   {
     (void)strcpy(string, input_string);
   }
@@ -48,7 +48,7 @@ static void g_17(void)
   if (sz1 > 1U)
   {
     /* use “%zu” to print the variables of size_t length. */
-    printf("%zu \n", sz1);
+    printf("size of text1: %zu \n", sz1);
   }
 }
 
