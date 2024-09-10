@@ -82,7 +82,6 @@ int main(int argc, char **argv){
 
 	}
 
-
 	// Closing the Socket File Descriptor.
 	close(sockfd);
 	return 0;

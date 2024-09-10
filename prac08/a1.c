@@ -10,7 +10,6 @@
 
 int main(int argc, char **argv)
 {
-
   /* client file descriptor */
   int client_fd;
   /* receive buffer */
@@ -50,13 +49,13 @@ int main(int argc, char **argv)
 
   /* Assign a name to the socket created - Implement bind() system call
      Tutor: When a server application wants to listen for incoming connections, it needs to bind a socket to a specific IP address and port number. This allows the server to receive incoming connections on that specific address and port. */
-  if (bind(fd, (struct sockaddr *)&server_address, sizeof(server_address)) == -1)
+  if (bind(fd, (struct sockaddr *)&server_address, sizeof(server_address)))
   {
     perror("Error: bind()");
     return 1;
   }
 
-  /* Place server in passive mode - listen for incomming client request  */
+  /* Place server in passive mode - listen for incoming client request  */
   if (listen(fd, 10) == -1)
   {
     perror("Error: listen()");
@@ -74,7 +73,7 @@ int main(int argc, char **argv)
       return 1;
     }
 
-    /* receive the incomming client data */
+    /* receive the incoming client data */
     int bytes_received = recv(client_fd, receive_buffer, 1023, 0);  // Tutor: setting flag to 0 means that you want to receive the data in its default behavior without any special options. https://man7.org/linux/man-pages/man2/recvmsg.2.html
     if (bytes_received == -1)
     {
@@ -86,19 +85,28 @@ int main(int argc, char **argv)
     receive_buffer[bytes_received] = '\0';
     printf("\nNumber of Bytes received: %d.\nData: %s\n\n", bytes_received, receive_buffer);
 
+    /* check if the client data is 'q' to close and shutdown the server */
+    if (strcmp(receive_buffer, "q") == 0)
+    {
+      /* shutdown the connection - end communication to and from the socket SHUT_RDWR */
+      if (shutdown(client_fd, SHUT_RDWR) == -1)
+      {
+        perror("Error: shutdown()");
+        return 1;
+      }
+
+      /* close the socket used to receive data */
+      close(client_fd);
+
+      /* close the main socket */
+      close(fd);
+      printf("Server closed successfully\n");
+      return 0;
+    }
+
     /* close the socket used to receive data */
     close(client_fd);
   }
-
-  /* shutdown the connection - end communication to and from the socket SHUT_RDWR */
-  if (shutdown(client_fd, SHUT_RDWR) == -1)
-  {
-    perror("Error: shutdown()");
-    return 1;
-  }
-
-  /* sockets can remain open after program termination */
-  close(fd);
-  printf("Server closed successfully\n");
+  
   return 0;
 }
