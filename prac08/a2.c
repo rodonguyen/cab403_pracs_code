@@ -74,6 +74,7 @@ int main(int argc, char **argv)
 
     /* Clear the buffer and send a message from the server to the client */
     bzero(buffer, BUFFER_SIZE);
+
     if (is_continuing)
     {
       strcpy(buffer, DATA_RECEIVED_SUCCESS_MESSAGE);
@@ -83,7 +84,9 @@ int main(int argc, char **argv)
       strcpy(buffer, CLOSE_CONNECTION_MESSAGE);
       printf("\nTermination message sent from client\nClosing socket\n");
     }
+
     sendto(socket_fd, buffer, 1024, 0, (struct sockaddr *)&client_addr, sizeof(client_addr));
+    
     printf("[+] Data send: %s\n", buffer);
   }
 
