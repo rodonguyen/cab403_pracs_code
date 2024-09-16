@@ -1,4 +1,4 @@
-/* Program:  sjf_sched_sol.c
+/* Program:  sjf_sched.c
  * Purpose:  using linked list queues for Round-Robin Scheduling
  *=========================================================*/
 
@@ -73,41 +73,54 @@ int main()
 
 int sjf(node *p)
 {
-  node *previous_node = p, *current_node = p, *sjf_previous_node = p, *sjf_current_node = p;
+  // TO DO - Implement SJF Solution
 
-  if (p == NULL) /* just return if the ready queue is empty*/
+  // return 0 if queue is empty
+  if (p == NULL)
     return (0);
 
-  if (p->next == NULL) /* only one node in the ready queue*/
+  // only 1 node in queue
+  if (p->next == NULL)
   {
     insert_to_sjf_queue(p);
     return (1);
   }
-  while (sjf_current_node != NULL)
-  { /* find the shortest job*/
-    if (sjf_current_node->burst < current_node->burst)
+
+  // find the shortest job
+  node *shortest_node = p;     // the node with smallest job
+  node *pre_shortest_node = p; // the node lies before the node with smallest job
+  node *previous_node = p;     // the node lies before the current node
+  node *current_node = p;
+
+  while (current_node != NULL)
+  {
+    if (current_node->burst < shortest_node->burst)
     {
-      previous_node = sjf_previous_node;
-      current_node = sjf_current_node;
+      pre_shortest_node = previous_node;
+      shortest_node = current_node;
     }
-    sjf_previous_node = sjf_current_node;
-    sjf_current_node = sjf_current_node->next;
+    previous_node = current_node;
+    current_node = current_node->next;
   }
 
-  /* delete the shortest job in the ready queue */
-  if (previous_node == current_node)
+  // delete the shortest job in the ready queue
+  if (pre_shortest_node == shortest_node) // meaning the shortest node is the head
   {
-    head = current_node->next;
-    current_node->next = NULL;
+    // remove the head
+    head = shortest_node->next;
+    shortest_node->next = NULL;
   }
   else
   {
-    previous_node->next = current_node->next;
-    current_node->next = NULL;
+    pre_shortest_node->next = shortest_node->next;
+    shortest_node->next = NULL;
   }
 
-  insert_to_sjf_queue(current_node);
-  sjf(head); /* Recursive call */
+  // insert the shortest job to the SJF queue
+  insert_to_sjf_queue(shortest_node);
+
+  // Recursive call
+  sjf(head);
 
   return 0;
 }

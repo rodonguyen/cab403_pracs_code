@@ -17,15 +17,15 @@ typedef struct process node;
 node *head = NULL; /* ready queue's head */
 node *tail = NULL; /* ready queue's tail */
 
-node *fhead = NULL; /* SJF scheduling queue's head */
-node *ftail = NULL; /* SJF scheduling queue's tail */
+node *sjf_head = NULL; /* SJF scheduling queue's head */
+node *sjf_tail = NULL; /* SJF scheduling queue's tail */
 
 void print_list(node *);
 
 int sjf(node *p); /* the shortest job first scheduling algorithm */
 
 /*insert function for the ready queue */
-void r_insq(node *new)
+void insert_to_ready_queue(node *new)
 {
     if (tail == NULL) /* empty list */
         head = new;
@@ -34,13 +34,13 @@ void r_insq(node *new)
     tail = new;
 }
 
-void f_insq(node *new)
+void insert_to_sjf_queue(node *new)
 {
-    if (ftail == NULL) /* empty list */
-        fhead = new;
+    if (sjf_tail == NULL) /* empty list */
+        sjf_head = new;
     else
-        ftail->next = new;
-    ftail = new;
+        sjf_tail->next = new;
+    sjf_tail = new;
 }
 
 int main()
@@ -55,7 +55,7 @@ int main()
         p->data = 64 + i;
         p->burst = (int)((double)(99) * rand() / (999999999 + 1.0));
         p->next = NULL;
-        r_insq(p);
+        insert_to_ready_queue(p);
     }
 
     printf("The ready queue for the SJF scheduling is: \n\n");
@@ -65,7 +65,7 @@ int main()
     /* FJF scheduling */
     sjf(head);
     printf("The resulting SJF schedule is: \n\n");
-    print_list(fhead);
+    print_list(sjf_head);
     printf("\n\n");
 
     return 0;
