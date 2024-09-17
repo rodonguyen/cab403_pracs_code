@@ -73,8 +73,6 @@ int main()
 
 int sjf(node *p)
 {
-  // TO DO - Implement SJF Solution
-
   // return 0 if queue is empty
   if (p == NULL)
     return (0);
@@ -83,7 +81,7 @@ int sjf(node *p)
   if (p->next == NULL)
   {
     insert_to_sjf_queue(p);
-    return (1);
+    return (0);
   }
 
   // find the shortest job
