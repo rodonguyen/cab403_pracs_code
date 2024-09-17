@@ -37,7 +37,7 @@ void printLinkedList(node *headOfLinkedList);
  * \param jobQueueNode - node to be added to tail of
  *        Job Queue
  */
-void insertNodeJobQueue(node *jobQueueNode)
+void insertNodeToJobQueue(node *jobQueueNode)
 {
   if (jobQueueTail == NULL)
   { /* empty list */
@@ -108,7 +108,7 @@ int main()
     processingNode->processID = 64 + i;
     processingNode->burstTime = (int)((double)(99) * rand() / (999999999 + 1.0));
     processingNode->nextNode = NULL;
-    insertNodeJobQueue(processingNode);
+    insertNodeToJobQueue(processingNode);
   }
 
   printf("The Job Queue Processes to be executed using a Round Robin Scheduling Algorithm: \n\n");
@@ -131,7 +131,7 @@ int main()
       jobQueueProcess->burstTime = processingNode->burstTime - quantum;
       jobQueueProcess->processID = processingNode->processID;
       jobQueueProcess->nextNode = NULL;
-      insertNodeJobQueue(jobQueueProcess);
+      insertNodeToJobQueue(jobQueueProcess);
 
       readyQueueProcess = malloc(sizeof(node));
       readyQueueProcess->burstTime = quantum;

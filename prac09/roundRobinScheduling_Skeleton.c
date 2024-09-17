@@ -27,7 +27,7 @@ typedef struct process
 node *jobQueueHead = NULL; /* Job queue head */
 node *jobQueueTail = NULL; /* Job queue tail */
 
-node *readyQueueHead = NULL; /* Ready Queue head */
+node *readyQueueHead = NULL; /* Ready Queue head, scheduling linked list */
 node *readyQueueTail = NULL; /* Ready queue's tail */
 
 void printLinkedList(node *headOfLinkedList);
@@ -37,7 +37,7 @@ void printLinkedList(node *headOfLinkedList);
  * \param jobQueueNode - node to be added to tail of
  *        Job Queue
  */
-void insertNodeJobQueue(node *jobQueueNode)
+void insertNodeToJobQueue(node *jobQueueNode)
 {
   if (jobQueueTail == NULL)
   { /* empty list */
@@ -88,26 +88,25 @@ void insertNodeToReadyQueue(node *newReadyQueueNode)
   {
     readyQueueTail->nextNode = newReadyQueueNode;
   }
+
+  // make the new node the tail of the ready queue
   readyQueueTail = newReadyQueueNode;
 }
 
 int main()
 {
-  node *processRep;
-  node *jobQueueProcess;
-  node *readyQueueProcess;
-
   int i;
   int quantum = 20; // time quantum
 
   /* initializing the ready queue for RR */
+  node *processingNode;
   for (i = 1; i <= 5; i++)
   {
-    processRep = malloc(sizeof(node));
-    processRep->processID = 64 + i;
-    processRep->burstTime = (int)((double)(99) * rand() / (999999999 + 1.0));
-    processRep->nextNode = NULL;
-    insertNodeJobQueue(processRep);
+    processingNode = malloc(sizeof(node));
+    processingNode->processID = 64 + i;
+    processingNode->burstTime = (int)((double)(99) * rand() / (999999999 + 1.0));
+    processingNode->nextNode = NULL;
+    insertNodeToJobQueue(processingNode);
   }
 
   printf("The Job Queue Processes to be executed using a Round Robin Scheduling Algorithm: \n\n");
@@ -118,7 +117,31 @@ int main()
   while (jobQueueHead != NULL)
   {
     /* the RR scheduling algorithm, insert your solution here for task1 */
+    // get the first node in the job queue
+    processingNode = removeJobQueueHeadNode();
     
+    // if the burst time of the first node is less than or equal to the quantum, 
+    // then add the node to the ready queue.
+    if (processingNode->burstTime <= quantum)
+    {
+      insertNodeToReadyQueue(processingNode);
+      continue;
+    }
+
+    // if the burst time of the first node is greater than the quantum,
+    // then subtract the quantum from the burst time of the first node.
+    // add the node to the ready queue.
+    node *nextJobToPutInJobQueue = malloc(sizeof(node));
+    nextJobToPutInJobQueue->burstTime = processingNode->burstTime - quantum;
+    nextJobToPutInJobQueue->processID = processingNode->processID;
+    nextJobToPutInJobQueue->nextNode = NULL;
+    insertNodeToJobQueue(nextJobToPutInJobQueue);
+
+    node *jobToPutInReadyQueue = malloc(sizeof(node));
+    jobToPutInReadyQueue->burstTime = quantum;
+    jobToPutInReadyQueue->processID = processingNode->processID;
+    jobToPutInReadyQueue->nextNode = NULL;
+    insertNodeToReadyQueue(jobToPutInReadyQueue);
   }
 
   printf("The resulting RR schedule is: \n\n");
@@ -141,9 +164,9 @@ void printLinkedList(node *headOfLinkedList)
   {
     while (headOfLinkedList->nextNode)
     {
-      printf("(%c, %d) --> ", headOfLinkedList->processID, headOfLinkedList->burstTime);
+      printf("(%c, %d) -> ", headOfLinkedList->processID, headOfLinkedList->burstTime);
       headOfLinkedList = headOfLinkedList->nextNode;
     }
-    printf("(%c, %d) ^\n ", headOfLinkedList->processID, headOfLinkedList->burstTime);
+    printf("(%c, %d) \n ", headOfLinkedList->processID, headOfLinkedList->burstTime);
   }
 }
