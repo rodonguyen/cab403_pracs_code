@@ -17,8 +17,8 @@ typedef struct process node;
 node *head = NULL; /* ready queue's head */
 node *tail = NULL; /* ready queue's tail */
 
-node *sjf_head = NULL; /* SJF scheduling queue's head */
-node *sjf_tail = NULL; /* SJF scheduling queue's tail */
+node *fhead = NULL; /* SJF scheduling queue's head */
+node *ftail = NULL; /* SJF scheduling queue's tail */
 
 void print_list(node *);
 
@@ -34,13 +34,13 @@ void insert_to_ready_queue(node *new)
   tail = new;
 }
 
-void insert_to_schedule_queue(node *new)
+void insert_to_schedule_queue(node *new) // ready_queue in activity 1
 {
-  if (sjf_tail == NULL) /* empty list */
-    sjf_head = new;
+  if (ftail == NULL) /* empty list */
+    fhead = new;
   else
-    sjf_tail->next = new;
-  sjf_tail = new;
+    ftail->next = new;
+  ftail = new;
 }
 
 int main()
@@ -65,7 +65,7 @@ int main()
   /* FJF scheduling */
   sjf(head);
   printf("The resulting SJF schedule is: \n\n");
-  print_list(sjf_head);
+  print_list(fhead);
   printf("\n\n");
 
   return 0;
@@ -73,20 +73,22 @@ int main()
 
 int sjf(node *p)
 {
-  // return 0 if queue is empty
-  if (p == NULL)
+  // For each sjf function call, we will find the shortest job in the waiting queue.
+  // use recursive call to find the next shortest job in the waiting queue until the waiting queue is empty.
+
+  if (p == NULL) /* just return if the waiting queue is empty*/
     return 0;
 
-  // only 1 node in queue
-  if (p->next == NULL)
+  if (p->next == NULL) /* only one node in the waiting queue*/
   {
     insert_to_schedule_queue(p);
     return 0;
   }
 
-  // iterate throught the whole linked list to find the shortest job
-  node *current_node = p;
+  // if there're more than 1 node in the waiting queue, we will find the shortest job in the waiting queue,
+  // remove it from the waiting queue and add it to the scheduling queue.
   node *shortest_node = p;
+  node *current_node = p;
 
   while (current_node != NULL)
   {
@@ -97,7 +99,7 @@ int sjf(node *p)
     current_node = current_node->next;
   }
 
-  // delete the shortest job in the ready queue
+  // delete the shortest job in the waiting queue (google: delete a node from the linked list)
   if (shortest_node == p) // meaning the shortest node is the head
   {
     // remove the head
@@ -106,8 +108,6 @@ int sjf(node *p)
   }
   else
   {
-    // do another search to look for the node before the shortest node,
-    // allowing us to remove the shortest node in the linked list
     node *node_before_the_shortest_node = p;
     while (node_before_the_shortest_node->next != shortest_node)
     {
@@ -117,11 +117,10 @@ int sjf(node *p)
     shortest_node->next = NULL;
   }
 
-  // don't forget to insert the shortest node to the SJF queue
+  // add the shortest job to the scheduling queue
   insert_to_schedule_queue(shortest_node);
 
-  // move to the next node
-  sjf(head);
+  sjf(head); /* Recursive call */
 
   return 0;
 }
@@ -134,9 +133,9 @@ void print_list(node *p)
   {
     while (p->next)
     {
-      printf("(%c, %d) -> ", p->data, p->burst);
+      printf("(%c, %d) --> ", p->data, p->burst);
       p = p->next;
     }
-    printf("(%c, %d) \n ", p->data, p->burst);
+    printf("(%c, %d) ^\n ", p->data, p->burst);
   }
 }

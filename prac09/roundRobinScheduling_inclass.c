@@ -1,4 +1,4 @@
-/* Program:  roundRobinSchedulingSolution.c
+/* Program:  roundRobinScheduling_Skeleton.c
  * Purpose:  Both the Ready Queue and the Job Queue are implemented as Linked Lists.
  * Initial Job Queue: (A, 178)-->(B, 83)-->(C, 166)-->(D, 169)-->(E, 193)
  * Process is taken from the head of the Job queue (A, 178) and
@@ -24,9 +24,11 @@ typedef struct process
   struct process *nextNode;
 } node;
 
+// is where we store the waiting processes
 node *waitingQueueHead = NULL; /* Job queue head */
 node *waitingQueueTail = NULL; /* Job queue tail */
 
+// is where we store the order we want to execute the processes
 node *readyQueueHead = NULL; /* Ready Queue head */
 node *readyQueueTail = NULL; /* Ready queue's tail */
 
@@ -37,7 +39,7 @@ void printLinkedList(node *headOfLinkedList);
  * \param jobQueueNode - node to be added to tail of
  *        Job Queue
  */
-void insertNodeToReadyQueue(node *jobQueueNode)
+void insertNodeToWaitingQueue(node *jobQueueNode)
 {
   if (waitingQueueTail == NULL)
   { /* empty list */
@@ -94,56 +96,59 @@ void insertNodeToReadyQueue(node *newReadyQueueNode)
 
 int main()
 {
-  node *processingNode;
-  node *jobQueueProcess;
-  node *readyQueueProcess;
+  // node *jobQueueProcess;
+  // node *readyQueueProcess;
 
   int i;
   int quantum = 20; // time quantum
 
   /* initializing the ready queue for RR */
+  node *processingNode;
   for (i = 1; i <= 5; i++)
   {
     processingNode = malloc(sizeof(node));
     processingNode->processID = 64 + i;
     processingNode->burstTime = (int)((double)(99) * rand() / (999999999 + 1.0));
     processingNode->nextNode = NULL;
-    insertNodeToReadyQueue(processingNode);
+    insertNodeToWaitingQueue(processingNode);
   }
 
   printf("The Job Queue Processes to be executed using a Round Robin Scheduling Algorithm: \n\n");
   printLinkedList(waitingQueueHead);
-  printf("\n\n");
+  printf("\n");
 
-  /* the RR scheduling algorithm, insert your solution here for task1 */
-
-  /* Create a loop until the ready queue is empty */
+  /* Create a loop until the Job queue is empty */
   while (waitingQueueHead != NULL)
   {
-    processingNode = removeHeadNodeFromWaitingQueue();
-    if (processingNode->burstTime <= quantum)
+    // get the first process in the job queue
+    node *currentNode = removeHeadNodeFromWaitingQueue();
+
+    // 2 cases:
+    // - if the length of the process is <= quantum, add it to the ready queue
+    if (currentNode->burstTime <= quantum)
     {
-      insertNodeToReadyQueue(processingNode);
+      insertNodeToReadyQueue(currentNode);
     }
     else
     {
-      jobQueueProcess = malloc(sizeof(node));
-      jobQueueProcess->burstTime = processingNode->burstTime - quantum;
-      jobQueueProcess->processID = processingNode->processID;
-      jobQueueProcess->nextNode = NULL;
-      insertNodeToReadyQueue(jobQueueProcess);
+      // - if the length of the process is > quantum, subtract quantum from the length of the process
+      // append the process node to the ready queue
+      node *nextNodeInSchedule = malloc(sizeof(node));
+      nextNodeInSchedule->burstTime = quantum;
+      nextNodeInSchedule->processID = currentNode->processID;
+      nextNodeInSchedule->nextNode = NULL;
+      insertNodeToReadyQueue(nextNodeInSchedule);
 
-      readyQueueProcess = malloc(sizeof(node));
-      readyQueueProcess->burstTime = quantum;
-      readyQueueProcess->processID = processingNode->processID;
-      readyQueueProcess->nextNode = NULL;
-      insertNodeToReadyQueue(readyQueueProcess);
+      // subtract the quantum from the burst time/length of the process, add it back to the waiting queue if it is not done
+      currentNode->burstTime -= quantum;
+      currentNode->nextNode = NULL;
+      insertNodeToWaitingQueue(currentNode);
     }
   }
 
-  printf("The resulting Round Robin Schedule for Process Execution: \n\n");
+  printf("The resulting RR schedule is: \n\n");
   printLinkedList(readyQueueHead);
-  printf("\n");
+  printf("\n\n");
 
   return 0;
 }
@@ -155,15 +160,15 @@ void printLinkedList(node *headOfLinkedList)
 {
   if (headOfLinkedList == NULL)
   {
-    printf("^\n");
+    printf("\n");
   }
   else
   {
     while (headOfLinkedList->nextNode)
     {
-      printf("(%c, %d) --> ", headOfLinkedList->processID, headOfLinkedList->burstTime);
+      printf("(%c, %d) -> ", headOfLinkedList->processID, headOfLinkedList->burstTime);
       headOfLinkedList = headOfLinkedList->nextNode;
     }
-    printf("(%c, %d) ^\n ", headOfLinkedList->processID, headOfLinkedList->burstTime);
+    printf("(%c, %d) \n ", headOfLinkedList->processID, headOfLinkedList->burstTime);
   }
 }

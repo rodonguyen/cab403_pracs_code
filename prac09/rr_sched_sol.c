@@ -21,7 +21,7 @@ node *dtail = NULL; /* dispatcher RR scheduling queue's tail */
 void print_list(node *);
 
 /*insert function for the ready queue */
-void r_insq(node *new) {
+void insert_to_ready_queue(node *new) {
     if (tail == NULL)  {/* empty list */
         head = new;
 	}  else {
@@ -69,7 +69,7 @@ int main() {
         p->data = 64 + i;
         p->burst = (int)((double)(99) * rand() / (999999999 + 1.0));
         p->next = NULL;
-        r_insq(p);
+        insert_to_ready_queue(p);
     }
 
     printf("The ready queue for the RR scheduling is: \n\n");
@@ -88,7 +88,7 @@ int main() {
 			p1->data = p->data;
 			p1->burst = p->burst-q;
 			p1->next = NULL;
-			r_insq(p1);
+			insert_to_ready_queue(p1);
 			
 			p2= malloc(sizeof(node));
 			p2->data = p->data;

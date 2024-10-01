@@ -34,7 +34,7 @@ void insert_to_ready_queue(node *new)
   tail = new;
 }
 
-void insert_to_sjf_queue(node *new)
+void insert_to_schedule_queue(node *new)
 {
   if (sjf_tail == NULL) /* empty list */
     sjf_head = new;
@@ -80,7 +80,7 @@ int sjf(node *p)
   // only 1 node in queue
   if (p->next == NULL)
   {
-    insert_to_sjf_queue(p);
+    insert_to_schedule_queue(p);
     return (0);
   }
 
@@ -115,7 +115,7 @@ int sjf(node *p)
   }
 
   // insert the shortest job to the SJF queue
-  insert_to_sjf_queue(shortest_node);
+  insert_to_schedule_queue(shortest_node);
 
   // Recursive call
   sjf(head);

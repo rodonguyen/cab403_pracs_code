@@ -34,7 +34,7 @@ void insert_to_ready_queue(node *new)
   tail = new;
 }
 
-void insert_to_sjf_queue(node *new)
+void insert_to_schedule_queue(node *new)
 {
   if (sjf_tail == NULL) /* empty list */
     sjf_head = new;
@@ -80,7 +80,7 @@ int sjf(node *p)
 
   if (p->next == NULL) /* only one node in the ready queue*/
   {
-    insert_to_sjf_queue(p);
+    insert_to_schedule_queue(p);
     return (1);
   }
   while (sjf_current_node != NULL)
@@ -106,7 +106,7 @@ int sjf(node *p)
     current_node->next = NULL;
   }
 
-  insert_to_sjf_queue(current_node);
+  insert_to_schedule_queue(current_node);
   sjf(head); /* Recursive call */
 
   return 0;
