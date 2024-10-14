@@ -69,3 +69,8 @@ Relies on all applications cooperating and checking locks properly
 Potential for data corruption if an application fails to respect locks
 Can lead to more complex application code to handle locking properly
 
+#### A4
+```
+truncate -s 10M testing1.txt
+ls -l testing1.txt # Check size
+```
