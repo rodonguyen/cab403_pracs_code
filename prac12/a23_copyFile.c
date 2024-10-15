@@ -25,6 +25,7 @@ int main(int argc, char **argv)
   clock_t after = clock();
   fclose(fp_in);
   fclose(fp_out);
+  
   clock_t duration = after - before;
   int s = duration / CLOCKS_PER_SEC;
   int ms = (duration % CLOCKS_PER_SEC) * 1000 / CLOCKS_PER_SEC;

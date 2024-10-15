@@ -41,7 +41,19 @@ b) Add the 4,990 users to this group
 c) Set the file ownership to the appropriate user and group:
 `chown owner:fileaccessgroup filename`  
 d) Set the file permissions to allow group read (and possibly write) access:  
-`chmod 640 filename` (read/write for owner, read for group, no access for others)
+`chmod 750 filename` (read/write for owner, read for group, no access for others)
+
+4 - read
+2 - write
+1 - execute
+0 - no per
+
+
+R-W-E
+1 1 1 = 7  (Owner)
+1 1 0 = 6  (Group Access)
+0 0 1 = 1  (Public)
+
 
 
 C.  

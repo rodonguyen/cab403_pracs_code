@@ -63,6 +63,7 @@ int main()
   fclose(file);
   printf("\n");
 
+
   /* use fseek to read 4th record, change it, and write it back */
   file = fopen("junk", "r+");
   if (!file)

@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
 
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 1000
 char buffer[BUFFER_SIZE];
 
 int main(int argc, char **argv)
